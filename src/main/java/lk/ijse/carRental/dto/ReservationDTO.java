@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -16,5 +18,6 @@ public class ReservationDTO {
     private String droverLicenceNumber;
     private String nic;
     private double finalTotal;
+    List<ResevatipnDetailDTO> resevatipnDetailDTOS;
 
 }
