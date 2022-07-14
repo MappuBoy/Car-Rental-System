@@ -1,9 +1,7 @@
 package lk.ijse.carRental.controller;
 
 import lk.ijse.carRental.dto.AdminEmployeeDTO;
-import lk.ijse.carRental.dto.GuestCustomerDTO;
 import lk.ijse.carRental.service.AdminEmployeeService;
-import lk.ijse.carRental.service.CustomerService;
 import lk.ijse.carRental.util.ResponceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,39 +9,39 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/adminemployee")
 @CrossOrigin
-public class CustomerController {
-
+public class AdminController {
     @Autowired
-    CustomerService customer;
+    AdminEmployeeService adminEmployeeService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil getAllCustomers() {
-        return new ResponceUtil(200,"Ok",customer.getAllCustomers());
+    public ResponceUtil getAllEmployee() {
+        return new ResponceUtil(200,"Ok",adminEmployeeService.getAllEmployee());
     }
 
     @ResponseStatus(HttpStatus.CREATED) //201
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil customerSave(@ModelAttribute GuestCustomerDTO customerDTO) {
-        customer.customerSave(customerDTO);
+    public ResponceUtil saveEmployee(@ModelAttribute AdminEmployeeDTO adminEmployeeDTO) {
+        adminEmployeeService.saveEmployee(adminEmployeeDTO);
         return new ResponceUtil(200,"Save",null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil updateCustomer(@RequestBody  GuestCustomerDTO customerDTO) {
-        customer.updateCustomer(customerDTO);
+    public ResponceUtil updateEmployee(@RequestBody AdminEmployeeDTO employeeDTO) {
+        adminEmployeeService.updateEmployee(employeeDTO);
         return new ResponceUtil(200,"Updated",null);
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil deleteCustomer(@RequestParam String id) {
-        customer.deleteCustomer(id);
+    public ResponceUtil deleteEmployee(@RequestParam String id) {
+        adminEmployeeService.deleteEmployee(id);
         return new ResponceUtil(200,"Deleted",null);
     }
 
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil serachCustomer(@PathVariable String id) {
-        return new ResponceUtil(200,"Ok",customer.serachCustomer(id));
+    public ResponceUtil serachEmployee(@PathVariable String id) {
+        return new ResponceUtil(200,"Ok",adminEmployeeService.serachEmployee(id));
     }
+
 }

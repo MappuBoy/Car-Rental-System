@@ -7,23 +7,26 @@ import lk.ijse.carRental.service.AdminEmployeeService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
+@Transactional
 public class AdminEmployeeServiceImpl implements AdminEmployeeService {
     @Autowired
     private AdminRepo repo;
     @Autowired
     private ModelMapper modelMapper;
 
+
     @Override
-    public void EmployeeSave(AdminEmployeeDTO adminEmployeeDTO) {
+    public void saveEmployee(AdminEmployeeDTO adminEmployeeDTO) {
         if (!repo.existsById(adminEmployeeDTO.getServiceId())){
             repo.save(modelMapper.map(adminEmployeeDTO, AdminEmployee.class));
         }else{
             throw new RuntimeException("Damage Already Exist..!");
         }
-
     }
 
     @Override

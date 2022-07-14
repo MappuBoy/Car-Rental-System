@@ -6,7 +6,7 @@ import lk.ijse.carRental.dto.GuestCustomerDTO;
 import java.util.List;
 
 public interface AdminEmployeeService {
-    void EmployeeSave(AdminEmployeeDTO adminEmployeeDTO);
+    void saveEmployee(AdminEmployeeDTO adminEmployeeDTO);
     void deleteEmployee(String employeeId);
     void updateEmployee(AdminEmployeeDTO adminEmployeeDTO);
     AdminEmployeeDTO serachEmployee(String employeeId);

@@ -7,9 +7,12 @@ import lk.ijse.carRental.repo.ReservationRepo;
 import lk.ijse.carRental.service.ReservationService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
+@Transactional
 public class ReservationServiceImpl implements ReservationService {
     @Autowired
     private ReservationRepo repo;

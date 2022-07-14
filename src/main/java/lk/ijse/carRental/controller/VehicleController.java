@@ -1,9 +1,7 @@
 package lk.ijse.carRental.controller;
 
-import lk.ijse.carRental.dto.AdminEmployeeDTO;
-import lk.ijse.carRental.dto.GuestCustomerDTO;
-import lk.ijse.carRental.service.AdminEmployeeService;
-import lk.ijse.carRental.service.CustomerService;
+import lk.ijse.carRental.dto.VehicleDTO;
+import lk.ijse.carRental.service.VehicleService;
 import lk.ijse.carRental.util.ResponceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,39 +9,38 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/payment")
 @CrossOrigin
-public class CustomerController {
-
+public class VehicleController {
     @Autowired
-    CustomerService customer;
+    VehicleService vehicleService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil getAllCustomers() {
-        return new ResponceUtil(200,"Ok",customer.getAllCustomers());
+    public ResponceUtil getAllpayment() {
+        return new ResponceUtil(200,"Ok",vehicleService.getAllvehicle());
     }
 
     @ResponseStatus(HttpStatus.CREATED) //201
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil customerSave(@ModelAttribute GuestCustomerDTO customerDTO) {
-        customer.customerSave(customerDTO);
+    public ResponceUtil vehicleSave(@ModelAttribute VehicleDTO vehicleSave) {
+        vehicleService.vehicleSave(vehicleSave);
         return new ResponceUtil(200,"Save",null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil updateCustomer(@RequestBody  GuestCustomerDTO customerDTO) {
-        customer.updateCustomer(customerDTO);
+    public ResponceUtil updatevehicle(@RequestBody VehicleDTO vehicleDTO) {
+        vehicleService.updatevehicle(vehicleDTO);
         return new ResponceUtil(200,"Updated",null);
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil deleteCustomer(@RequestParam String id) {
-        customer.deleteCustomer(id);
+    public ResponceUtil deletevehicle(@RequestParam String id) {
+        vehicleService.deletevehicle(id);
         return new ResponceUtil(200,"Deleted",null);
     }
 
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil serachCustomer(@PathVariable String id) {
-        return new ResponceUtil(200,"Ok",customer.serachCustomer(id));
+    public ResponceUtil serachpayment(@PathVariable String id) {
+        return new ResponceUtil(200,"Ok",vehicleService.serachvehicle(id));
     }
 }

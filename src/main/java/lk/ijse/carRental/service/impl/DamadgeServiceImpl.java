@@ -7,9 +7,12 @@ import lk.ijse.carRental.service.DamadgeService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Service
+@Transactional
 public class DamadgeServiceImpl implements DamadgeService {
     @Autowired
     private DamadgeRepo repo;
