@@ -22,7 +22,7 @@ public class Reservation {
     private double finalTotal;
     @ManyToOne
     @JoinColumn(name = " serviceId",referencedColumnName = "serviceId",nullable = false)
-    private Reservation services;
+    private AdminEmployee services;
     @ManyToOne
     @JoinColumn(name = " numberPlateNumber",referencedColumnName = "numberPlateNumber",nullable = false)
     private Vehicle numberPlates;
