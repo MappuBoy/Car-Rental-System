@@ -18,10 +18,10 @@ public class Driver {
     @Id
     private String droverLicenceNumber;
     private String fullname;
-    private String username;
-    private  String password;
     private String drivertype;
     private  String tpNumer;
+    private String address;
+    private String availability;
     @OneToMany(mappedBy = "droverLicenceNumber",cascade = {CascadeType.ALL})
     private List<Driver> drivers;
 

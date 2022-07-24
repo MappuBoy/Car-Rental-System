@@ -12,8 +12,8 @@ import lombok.ToString;
 public class DriverDTO {
     private String droverLicenceNumber;
     private String fullname;
-    private String username;
-    private  String password;
     private String drivertype;
     private  String tpNumer;
+    private String address;
+    private String availability;
 }

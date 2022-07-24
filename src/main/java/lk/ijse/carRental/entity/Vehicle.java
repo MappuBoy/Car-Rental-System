@@ -23,8 +23,7 @@ public class Vehicle {
     private String transmissionType;
     private String fuelType;
     private String colour;
-    private String username;
-    private String password;
+    private String availability;
     @OneToMany(mappedBy = "numberPlateNumber",cascade = {CascadeType.ALL})
     private List<Vehicle>vehicles;
 }

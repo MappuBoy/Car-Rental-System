@@ -17,7 +17,5 @@ public class VehicleDTO {
     private String transmissionType;
     private String fuelType;
     private String colour;
-    private String username;
-    private String password;
-
+    private String availability;
 }

@@ -15,14 +15,12 @@ import java.util.List;
 public class Reservation {
     @Id
     private String reservationId;
-    private String serviceId;
     private String numberPlateNumber;
     private String droverLicenceNumber;
     private String nic;
+    private String orderdate;
+    private String returnDate;
     private double finalTotal;
-    @ManyToOne
-    @JoinColumn(name = " serviceId",referencedColumnName = "serviceId",nullable = false)
-    private AdminEmployee services;
     @ManyToOne
     @JoinColumn(name = " numberPlateNumber",referencedColumnName = "numberPlateNumber",nullable = false)
     private Vehicle numberPlates;

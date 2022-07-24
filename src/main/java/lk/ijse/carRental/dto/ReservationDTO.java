@@ -13,10 +13,11 @@ import java.util.List;
 @ToString
 public class ReservationDTO {
     private String reservationId;
-    private String serviceId;
     private String numberPlateNumber;
     private String droverLicenceNumber;
     private String nic;
+    private String orderdate;
+    private String returnDate;
     private double finalTotal;
     List<ResevatipnDetailDTO> resevatipnDetailDTOS;
 
