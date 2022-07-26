@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @ToString
+@Entity
 public class Payment {
     @Id
     private String paymentId;
@@ -21,6 +23,6 @@ public class Payment {
     private String paymentType;
     private double pricePerKm;
     private double discount;
-    @OneToMany(mappedBy = "paymentId",cascade = {CascadeType.ALL})
-    private List<Payment>payments;
+    /*@OneToMany(mappedBy = "paymentId",cascade = {CascadeType.ALL})
+    private List<Payment>payments;*/
 }

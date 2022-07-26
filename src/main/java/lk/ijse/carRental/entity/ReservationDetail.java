@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @ToString
+@Entity
 @IdClass(ReservationDetail_PK.class)
 public class ReservationDetail {
     @Id
@@ -26,7 +27,7 @@ public class ReservationDetail {
     private double total;
     private String duration;
     private String rentalDate;
-    @ManyToOne
+  /*  @ManyToOne
     @JoinColumn(name = " paymentId",referencedColumnName = "paymentId",nullable = false)
     private Payment payments;
     @ManyToOne
@@ -34,6 +35,6 @@ public class ReservationDetail {
     private Damadge damadges;
     @ManyToOne
     @JoinColumn(name = " reservationId",referencedColumnName = "reservationId",nullable = false)
-    private Reservation reservations;
+    private Reservation reservations;*/
 
 }

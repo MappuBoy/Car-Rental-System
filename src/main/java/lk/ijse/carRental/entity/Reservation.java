@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @ToString
+@Entity
 public class Reservation {
     @Id
     private String reservationId;
@@ -21,7 +22,7 @@ public class Reservation {
     private String orderdate;
     private String returnDate;
     private double finalTotal;
-    @ManyToOne
+   /* @ManyToOne
     @JoinColumn(name = " numberPlateNumber",referencedColumnName = "numberPlateNumber",nullable = false)
     private Vehicle numberPlates;
     @ManyToOne
@@ -29,8 +30,8 @@ public class Reservation {
     private Driver droverLicences;
     @ManyToOne
     @JoinColumn(name = " nic",referencedColumnName = "nic",nullable = false)
-    private Customer nics;
+    private Customer nics;*/
 
-    @OneToMany(mappedBy = "reservationId",cascade = {CascadeType.ALL})
-    private List<Reservation>reservations;
+/*    @OneToMany(mappedBy = "reservationId",cascade = {CascadeType.ALL})
+    private List<Reservation>reservations;*/
 }

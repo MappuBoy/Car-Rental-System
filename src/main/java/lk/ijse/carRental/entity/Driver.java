@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @ToString
+@Entity
 public class Driver {
     @Id
     private String droverLicenceNumber;
@@ -22,7 +24,7 @@ public class Driver {
     private  String tpNumer;
     private String address;
     private String availability;
-    @OneToMany(mappedBy = "droverLicenceNumber",cascade = {CascadeType.ALL})
+  /*  @OneToMany(mappedBy = "droverLicenceNumber",cascade = {CascadeType.ALL})
     private List<Driver> drivers;
-
+*/
 }

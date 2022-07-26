@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @ToString
+@Entity
 public class AdminEmployee {
     @Id
     private String serviceId;
@@ -23,6 +25,6 @@ public class AdminEmployee {
     private String email;
     private String username;
     private String password;
-    @OneToMany(mappedBy = "servicedId",cascade = {CascadeType.ALL})
-    private List<AdminEmployee>employees;
+   /* @OneToMany(mappedBy = "servicedId",cascade = {CascadeType.ALL})
+    private List<AdminEmployee>employees;*/
 }
