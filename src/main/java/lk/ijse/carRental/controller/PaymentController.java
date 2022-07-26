@@ -1,8 +1,7 @@
 package lk.ijse.carRental.controller;
 
-import lk.ijse.carRental.dto.DriverDTO;
 import lk.ijse.carRental.dto.PaymentDTO;
-import lk.ijse.carRental.service.DriverService;
+
 import lk.ijse.carRental.service.PaymentService;
 import lk.ijse.carRental.util.ResponceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/payment")
 @CrossOrigin
 public class PaymentController {
-    @Autowired
+  /*  @Autowired
     PaymentService paymentService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,5 +42,5 @@ public class PaymentController {
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponceUtil serachpayment(@PathVariable String id) {
         return new ResponceUtil(200,"Ok",paymentService.serachpayment(id));
-    }
+    }*/
 }

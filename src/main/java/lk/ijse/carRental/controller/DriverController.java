@@ -1,6 +1,5 @@
 package lk.ijse.carRental.controller;
 
-import lk.ijse.carRental.dto.DamadgeDTO;
 import lk.ijse.carRental.dto.DriverDTO;
 import lk.ijse.carRental.service.DamadgeService;
 import lk.ijse.carRental.service.DriverService;

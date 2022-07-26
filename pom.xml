@@ -14,14 +14,12 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
-
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>5.3.21</version>
+            <version>5.3.20</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
@@ -98,11 +96,5 @@
             <version>5.9.0-M1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>2.7.1</version>
-        </dependency>
     </dependencies>
-
 </project>

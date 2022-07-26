@@ -24,6 +24,6 @@ public class Customer {
     private String address;
     private String tp;
     private String email;
-    @OneToMany(mappedBy = "nic",cascade = {CascadeType.ALL})
-    private List<Customer> customers;
+   /* @OneToMany(mappedBy = "nic",cascade = {CascadeType.ALL})
+    private List<Customer> customers;*/
 }
