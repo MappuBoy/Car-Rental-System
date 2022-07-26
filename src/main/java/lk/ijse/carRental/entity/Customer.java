@@ -1,14 +1,8 @@
 package lk.ijse.carRental.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,11 +13,12 @@ import java.util.List;
 public class Customer {
     @Id
     private String nic;
-    private String driverLicenceNumber;
-    private String name;
     private String address;
-    private String tp;
+    private String driverLicenceNumber;
     private String email;
+    private String name;
+    private String tp;
+
    /* @OneToMany(mappedBy = "nic",cascade = {CascadeType.ALL})
     private List<Customer> customers;*/
 }

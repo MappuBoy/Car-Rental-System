@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Car Rental</title>
+    <link rel="stylesheet" href="bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <style>
+      
+      #Header{
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+      }
+      #navbar{
+        padding: 50px 0;
+      }
+      .navbar-brand{
+        font-weight: bold;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        color:white;
+      }
+      .nav-item{
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-left: 50px;
+      }
+      .nav-link{
+        color:white;
+        letter-spacing: 2px;
+        font-size: 1em;
+        font-weight: 700;
+      }
+      .home{
+        position: relative;
+        background: url("assets/images/cars.jpg");
+        min-width: 50vh;
+        background-size: cover;
+        background-position: center;
+        padding: 280px 0 220px;
+      }
+      .home h2{
+        font-size: 2.6em;
+        color: #dcdde1;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      #topic{
+        margin-top: 1em;
+        padding: 0;
+        font-size: 16px;
+        color: #dcdde1;
+        font-weight: bold;
+        padding-bottom: 25px;
+      }
+      .home .book{
+        background: #718093;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration:none ;
+      }
+      #click{
+        margin-top: 1em;
+        padding: 0;
+        font-size: 16px;
+        color: #dcdde1;
+        font-weight: 400;
+        padding-bottom: 25px;
+      } 
+      .about{
+        margin: 0;
+        padding: 0;
+        position: relative;
+        background-color: aliceblue;
+
+      }
+      .about-img{
+        width: 100%;
+        height: 150px;
+        
+      }
+      .about-text h2{ 
+        width: 200%;
+        font-weight: bold;
+        justify-content: center;
+      }
+      .about-text p{
+        width: 200%;
+        font-weight: 400;
+        
+      }
+      .overServices{
+        position: relative;
+        justify-items: center;
+        padding: 40px;
+      }
+      .bold{
+        font-weight: 400;
+        color:blue;
+      }
+      .footer{
+        position: relative;
+        justify-items: center;
+        padding: 40px;
+        color: #dcdde1;
+      }
+      .modal{
+        margin:auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 500px;
+        height: 500px;
+        justify-content: center;
+        background-color: white;
+      }
+      #mymodel3{
+        margin:auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        background: url("assets/images/car-rent-sale-agent-car-rent-sale-agent-auto-dealer-leasing-web-banner-background-template-103944303.jpg");
+      }
+      .model-header{
+        background-color: gold;
+        color: white;
+        padding:15px;
+      }
+      .model-body{
+        padding: 20px;
+      }
+      
+      #front{
+        margin: 10px;
+      }
+      #middleRow{
+        margin: 10px;
+      }
+      #back{
+        margin: 10px;
+      }
+      #rentAcar{
+        color: gold;
+        font-weight: bold;
+      }
+      .table{
+        color: gold;
+      }
+      
+        
+      
+      
+     
+
+    </style>
+</head>
+<body>
+  <div class="fullsite">
+  <!--Navbar-->
+  <section id="Header">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="navbar">
+    <div class="container">
+      <a href="#" class="navbar-brand">Easy Car Rental</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a href="manageOrder.html" class="nav-link">Rent a Car</a>
+          </li>
+          <li class="nav-item">
+            <a href="manageDriver.html" class="nav-link">Driver</a>
+          </li>
+          <li class="nav-item">
+            <a href="manageVehicle.html" class="nav-link">Vehicle</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+
+  <!--Homepage-->
+<section class="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h2>Focused on safety, wherever you go</h2>
+        <p id="topic">Pickup up a vehicle of your choice and drive safe on your own or choose a drvier that you want.
+          <br>We guarantee over servive over five years with happy and safe customer feedbacks
+
+        </p>
+      
+      <div class="container mt-1 mb-4" id="rentAcar">
+        <a href=""class="book" id="rentCarPage" data-bs-toggle="modal" data-bs-target="#mymodel3">Rent a Vehicle</a>
+        <div class="modal" id="mymodel3">
+          <div class="model-dialog">
+            <div class="model-content">
+              <div class="model-header">
+                <h5 id="lbcustomerTopic">Rent a Car</h5>
+              </div>
+              <div class="model-body">
+                <form class="row g-3">
+                  <div class="col-md-4">
+                    <label for="ordercustID" class="form-label">Input NIC</label>
+                    <input type="text" class="form-control" id="ordercustID">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="orderVehicleID"class="form-label">Vehicle Numberplate</label>
+                    <input type="text" class="form-control" id="orderVehicleID" >
+                  </div>
+                  <div class="col-md-4">
+                    <label for="orderDriverName" class="form-label">Driver license number</label>
+                    <input type="text" class="form-control" id="orderDriverName">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="ordercustName" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="ordercustName">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="orderVehicleBrand" class="form-label">Vehicle Brand</label>
+                    <input type="text" class="form-control" id="orderVehicleBrand">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="orderDriversname" class="form-label">Driver Name</label>
+                    <input type="text" class="form-control" id="orderDriversname">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="orderCustTp" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" id="orderCustTp">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="orderVehicleType" class="form-label">Vehicle Type</label>
+                    <input type="text" class="form-control" id="orderVehicleType">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="orderDriversdrivertype" class="form-label">Driver type</label>
+                    <input type="text" class="form-control" id="orderDriversdrivertype">
+                  </div>
+                </form>
+                <div class="middle" id="front">
+                  <br><br>
+                  <div class="row">
+                    <div class="col-md-4"><table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col" >#</th>
+                          <th scope="col">First</th>
+                          <th scope="col">Last</th>
+                          <th scope="col">Handle</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                          <td>@fat</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td colspan="2">Larry the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                    <div class="col-md-4"  id="middleRow">
+                      <form class="col">
+                        <div class="row">
+                          <label for="orderPrechesDate" class="form-label">Perches date</label>
+                          <input type="text" class="form-control" id="orderPrechesData">
+                        </div>
+                        <div class="row">
+                          <label for="txtorderreturnDate" class="form-label">Return date</label>
+                          <input type="text" class="form-control" id="txtorderreturnDate">
+                        </div>
+                        <div class="row">
+                          <label for="txtorderDriversdrivertype" class="form-label">Driver type</label>
+                          <input type="text" class="form-control" id="txtorderDriversdrivertype">
+                        </div>
+                      </form>
+                    </div>
+                    
+                    <div class="col-md-3" id="back">
+                      <form class="col">
+                        <div class="row" >
+                          <label for="orderprechesdate" class="form-label">Perches Total</label>
+                          <input type="text" class="form-control" id="orderprechesdate">
+                        </div>
+                        <div class="row">
+                          <label for="orderReturndate" class="form-label">Payment</label>
+                          <input type="text" class="form-control" id="orderReturndate">
+                        </div>
+                      </form>
+                        <br>
+                        <a href=""class="book" id="perches">Perches a vehicle</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <p id="click">Before Rent A Vehicle please register <a href="#service" style="color: gold;">click here</a>
+       as a customer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--About----->
+<section id="about" class="about section-padding">
+  <div class="container container-lg">
+    <div class="row">
+      <div class="col-lg-4 col-md-12 col-12 ps-lg-5 mt-md-5">
+        <div class="about-img">
+          <img src="../assets/images/photo-1600320254374-ce2d293c324e.jfif" alt="" class="img-fluid ">
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-12 ps-lg-5 mt-md-5">
+        <div class="about-text">
+          <h2>We Provide Best Quality Services Ever </h2>
+          <br>
+          <p> Easy Car rental is mainly located in Panadura and we have another branch in Galle.<br>
+            Since 2017 we providing vehicle rental services to over customers.<br>
+            Now we provides the vehicles that in all the catagories and also hire drivers.<br>
+            Also we have luxary and economical vehicles.<br>
+            Our Vision is to give our best servicess to customers and lookafter over staff family and to provide the services many more years tocome.  
+
+          </p>
+        </div>
+        <button type="button" class="btn btn-dark">More infomation</button>
+      </div>
+      
+    </div>
+  </div>
+</section>
+<section class="overServices" id="service">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col">
+        <div class="card-group" style="background-color:bisque ;" >
+          <div class="card">
+            <img src="../assets/images/istockphoto-1137373614-170667a.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Customer</h5>
+              <p class="card-text">As a customer to rent a car you need to register first.
+                Then you can get our all the facilities and benifits.If you regulaly using this services then you can get discounts.
+                <br><p class="bold">our services and enjoy while being safe !</p> 
+                </p>
+            </div>
+            <div class="container mt-1 mb-4">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mymodel">Register Customer</button>
+              <div class="modal" id="mymodel">
+                <div class="model-dialog">
+                  <div class="model-content">
+                    <div class="model-header">
+                      <h5 id="customerTopic">Customer Registration</h5>
+                    </div>
+                    <div class="model-body">
+                      <form class="row g-3" id="customerForm">
+                        <div class="col-md-6">
+                          <label for="custID" class="form-label">Input NIC</label>
+                          <input type="text" class="form-control" id="custID" name="nic">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="custdriverLicenseNumber" class="form-label">Driver's license number</label>
+                          <input type="text" class="form-control" id="custdriverLicenseNumber" name="driverLicenceNumber">
+                        </div>
+                        <div class="col-12">
+                          <label for="custname" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="custname" name="name">
+                        </div>
+                        <div class="col-12">
+                          <label for="txtaddress" class="form-label">Address</label>
+                          <input type="text" class="form-control" id="txtaddress" name="address">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="custtp" class="form-label">tp</label>
+                          <input type="text" class="form-control" id="custtp" name="tp">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="custemail" class="form-label">email</label>
+                          <input type="text" class="form-control" id="custemail" name="email">
+                        </div>
+                        <div class="col-12">
+                          <button type="button" class="btn btn-success" id="btnSaveCustomer">Add Customer</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
+            </div>
+          <div class="card">
+            <img src="../assets/images/vist.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Vehicle</h5>
+              <p class="card-text">If you have a vehicle,<br>But you don't regulaly use and also you don't have time to drive. If so you can give us your vehicle.<br></p>
+              <p class="bold"> we can make money for you while car your safe and sound</p>
+            </div>
+            <div class="container mt-1 mb-4">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mymodel1">Register Vehicle</button>
+              <div class="modal" id="mymodel1">
+                <div class="model-dialog">
+                  <div class="model-content">
+                    <div class="model-header">
+                      <h5 id="lddriverTopic">Vehicle Registration</h5>
+                    </div>
+                    <div class="model-body">
+                      <form class="row g-3" id="vehicleForm">
+                        <div class="col-md-6">
+                          <label for="txtvehicleID" class="form-label">Input Numberplate Number</label>
+                          <input type="password" class="form-control" id="txtvehicleID" name="numberPlateNumber">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txtvehicleBrand" class="form-label">Brand</label>
+                          <input type="password" class="form-control" id="txtvehicleBrand" name="brand">
+                        </div>
+                        <div class="col-12">
+                          <label for="txttype" class="form-label">Type</label>
+                          <input type="text" class="form-control" id="txttype" name="type">
+                        </div>
+                        <div class="col-12">
+                          <label for="txtpassengersnumber" class="form-label">Number of Passengers</label>
+                          <input type="text" class="form-control" id="txtpassengersnumber" name="numberofPassengers">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txttransmitionType" class="form-label">Transmition Type</label>
+                          <input type="text" class="form-control" id="txttransmitionType" name="transmissionType">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txtfuelType" class="form-label">Fuel type</label>
+                          <input type="text" class="form-control" id="txtfuelType" name="fuelType">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txtcolour" class="form-label">Colour</label>
+                          <input type="text" class="form-control" id="txtcolour" name="colour">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txtavailability" class="form-label">Availability</label>
+                          <input type="text" class="form-control" id="txtavailability" name="availability">
+                        </div>
+                        <div class="col-12">
+                          <button type="submit" class="btn btn-success" id="btnsaveVehicle" >Add Vehicle</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
+            
+          </div>
+          <div class="card">
+            <img src="../assets/images/depositphotos_12750550-stock-photo-driver.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Driver</h5>
+              <p class="card-text">If you have driver's licence holder and safe driver<br> then this is the best job for you with good income also if you want to have a part-time income this can your best oppertunity.</p>
+              <p class="bold">enjoy your time and make money</p>
+            </div>
+            <div class="container mt-1 mb-4">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mymodel2">Register Driver</button>
+              <div class="modal" id="mymodel2">
+                <div class="model-dialog">
+                  <div class="model-content">
+                    <div class="model-header">
+                      <h5 id="driverTopic">Driver Registration</h5>
+                    </div>
+                    <div class="model-body">
+                      <form class="row g-3" id="driverForm">
+                        <div class="col-md-6">
+                          <label for="txtdriverid" class="form-label">Input Driver Licence Number</label>
+                          <input type="text" class="form-control" id="txtdriverid" name="droverLicenceNumber">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txtfullname" class="form-label">Full name</label>
+                          <input type="text" class="form-control" id="txtfullname" name="fullname">
+                        </div>
+                        <div class="col-12">
+                          <label for="txtdrivertype" class="form-label">Driver Type</label>
+                          <input type="text" class="form-control" id="txtdrivertype" name="drivertype">
+                        </div>
+                        <div class="col-12">
+                          <label for="txttpNumer" class="form-label">TP Number</label>
+                          <input type="text" class="form-control" id="txttpNumer" name="tpNumer">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txtdriverAddress" class="form-label">Address</label>
+                          <input type="text" class="form-control" id="txtdriverAddress" name="address">
+                        </div>
+                        <div class="col-md-6">
+                          <label for="txtdriveravailability" class="form-label">Availability</label>
+                          <input type="text" class="form-control" id="txtdriveravailability" name="availability">
+                        </div>
+                        <div class="col-12">
+                          <button type="submit" class="btn btn-success" id="btnsaveDriver">Add Driver</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="footer" style="background-color:dimgray; ">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h5>Contact us</h5>
+          <img src="../assets/images/download.jfif" alt="" class="img-fluid ">
+          <p>Call us : +94112777777<br>
+            email : easyrentcar@gmail.com<br>
+            address : 1234/G ,Panadura ,Galle Rd.<br> 
+            address : 5678/G ,Galle Fort ,Galle Rd. 
+        </p>
+      </div>
+      <div class="col">
+        <h5>Give us your opinion</h5>
+          <form class="row g-3">
+            <div class="col-md">
+              <label for="inputEmail4" class="form-label">Email</label>
+              <input type="email" class="form-control" id="inputEmail4">
+            </div>
+            <label for="floatingTextarea2">Comments</label>
+          <textarea class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
+            <button type="button" class="btn btn-success">Send you Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+    <script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery-3.6.0.min.js"></script>
+<script>
+
+  //save customer
+  $("#btnSaveCustomer").click(function(){
+    saveCustomer();
+  });
+
+  function saveCustomer(){
+    var data=$("#customerForm").serialize();
+    $.ajax({
+      url:"http://localhost:8080/Car_Rental_System_master_war/customer",
+      method:"POST",
+      data: data,
+      success: function (res){
+        if (res.code==200){
+          alert("Successfully Customer Registered");
+        }
+      },
+      error: function (ob){
+        alert(ob.responseJSON.message);
+      }
+    });
+  }
+
+  $("#btnsaveVehicle").click(function(){
+    saveVehicle();
+  });
+
+  function saveVehicle(){
+    var data=$("#vehicleForm").serialize();
+    $.ajax({
+      url: "http://localhost:8080/Car_Rental_System_master_war/vehicle",
+      method: "POST",
+      data:data,
+      success:function (res){
+        if (res.code==200){
+          alert("Successfully Vehicle Registered");
+        }
+      },
+      error: function (ob){
+        alert(ob.responseJSON.message);
+      }
+    });
+  }
+
+  $("#btnsaveDriver").click(function (){
+    saveDriver();
+  });
+  function saveDriver(){
+    var data=$("#driverForm").serialize();
+    $.ajax({
+      url:"http://localhost:8080/Car_Rental_System_master_war/driver",
+      method:"POST",
+      data:data,
+      success:function (res){
+        if (res.code==200){
+          alert("Successfully Driver Registered");
+        }
+      },
+      error: function (ob){
+        alert(ob.responseJSON.message);
+      }
+    });
+  }
+</script>
+</body>
+</html>

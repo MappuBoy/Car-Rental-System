@@ -1,8 +1,6 @@
 package lk.ijse.carRental.controller;
 
-import lk.ijse.carRental.dto.AdminEmployeeDTO;
-import lk.ijse.carRental.dto.GuestCustomerDTO;
-import lk.ijse.carRental.service.AdminEmployeeService;
+import lk.ijse.carRental.dto.CustomerDTO;
 import lk.ijse.carRental.service.CustomerService;
 import lk.ijse.carRental.util.ResponceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("customer")
 @CrossOrigin
 public class CustomerController {
 
@@ -25,13 +23,14 @@ public class CustomerController {
 
     @ResponseStatus(HttpStatus.CREATED) //201
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil customerSave(@ModelAttribute GuestCustomerDTO customerDTO) {
+    public ResponceUtil customerSave(@ModelAttribute CustomerDTO customerDTO) {
+        System.out.println(customerDTO.toString());
         customer.customerSave(customerDTO);
         return new ResponceUtil(200,"Save",null);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponceUtil updateCustomer(@RequestBody  GuestCustomerDTO customerDTO) {
+    public ResponceUtil updateCustomer(@RequestBody CustomerDTO customerDTO) {
         customer.updateCustomer(customerDTO);
         return new ResponceUtil(200,"Updated",null);
     }

@@ -19,11 +19,12 @@ import java.util.List;
 public class Driver {
     @Id
     private String droverLicenceNumber;
-    private String fullname;
-    private String drivertype;
-    private  String tpNumer;
     private String address;
     private String availability;
+    private String drivertype;
+    private String fullname;
+    private  String tpNumer;
+
   /*  @OneToMany(mappedBy = "droverLicenceNumber",cascade = {CascadeType.ALL})
     private List<Driver> drivers;
 */

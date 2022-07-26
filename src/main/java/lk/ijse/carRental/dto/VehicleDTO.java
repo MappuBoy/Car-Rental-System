@@ -11,11 +11,11 @@ import lombok.ToString;
 @ToString
 public class VehicleDTO {
     private String numberPlateNumber;
+    private String availability;
     private String brand;
-    private String type;
+    private String colour;
+    private String fuelType;
     private String numberofPassengers;
     private String transmissionType;
-    private String fuelType;
-    private String colour;
-    private String availability;
+    private String type;
 }

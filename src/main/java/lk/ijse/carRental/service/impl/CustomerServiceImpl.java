@@ -1,6 +1,6 @@
 package lk.ijse.carRental.service.impl;
 
-import lk.ijse.carRental.dto.GuestCustomerDTO;
+import lk.ijse.carRental.dto.CustomerDTO;
 import lk.ijse.carRental.entity.Customer;
 import lk.ijse.carRental.repo.CustomerRepo;
 import lk.ijse.carRental.service.CustomerService;
@@ -19,9 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private ModelMapper mapper;
     @Override
-    public void customerSave(GuestCustomerDTO guestCustomerDTO) {
-        if (!repo.existsById(guestCustomerDTO.getNic())){
-            repo.save(mapper.map(guestCustomerDTO, Customer.class));
+    public void customerSave(CustomerDTO customerDTO) {
+        if (!repo.existsById(customerDTO.getNic())){
+            repo.save(mapper.map(customerDTO, Customer.class));
         }else{
             throw new RuntimeException("Damage Already Exist..!");
         }
@@ -39,26 +39,26 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void updateCustomer(GuestCustomerDTO guestCustomerDTO) {
-        if (repo.existsById(guestCustomerDTO.getNic())) {
-            repo.save(mapper.map(guestCustomerDTO, Customer.class));
+    public void updateCustomer(CustomerDTO customerDTO) {
+        if (repo.existsById(customerDTO.getNic())) {
+            repo.save(mapper.map(customerDTO, Customer.class));
         } else {
             throw new RuntimeException("No Such Damage Vehicle To Update..! Please Check the ID..!");
         }
     }
 
     @Override
-    public GuestCustomerDTO serachCustomer(String nic) {
+    public CustomerDTO serachCustomer(String nic) {
         if (repo.existsById(nic)) {
-            return mapper.map(repo.findById(nic).get(), GuestCustomerDTO.class);
+            return mapper.map(repo.findById(nic).get(), CustomerDTO.class);
         } else {
             throw new RuntimeException("No Damage Vehicle For " + nic + " ..!");
         }
     }
 
     @Override
-    public List<GuestCustomerDTO> getAllCustomers() {
-        return mapper.map(repo.findAll(), new TypeToken<List<GuestCustomerDTO>>() {
+    public List<CustomerDTO> getAllCustomers() {
+        return mapper.map(repo.findAll(), new TypeToken<List<CustomerDTO>>() {
         }.getType());
     }
 }

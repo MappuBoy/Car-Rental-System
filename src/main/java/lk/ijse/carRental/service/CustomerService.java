@@ -1,13 +1,13 @@
 package lk.ijse.carRental.service;
 
-import lk.ijse.carRental.dto.GuestCustomerDTO;
+import lk.ijse.carRental.dto.CustomerDTO;
 
 import java.util.List;
 
 public interface CustomerService {
-    void customerSave(GuestCustomerDTO guestCustomerDTO);
+    void customerSave(CustomerDTO customerDTO);
     void deleteCustomer(String nic);
-    void updateCustomer(GuestCustomerDTO guestCustomerDTO);
-    GuestCustomerDTO serachCustomer(String nic);
-    List<GuestCustomerDTO> getAllCustomers();
+    void updateCustomer(CustomerDTO customerDTO);
+    CustomerDTO serachCustomer(String nic);
+    List<CustomerDTO> getAllCustomers();
 }

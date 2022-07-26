@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("payment")
+@RequestMapping("vehicle")
 @CrossOrigin
 public class VehicleController {
     @Autowired

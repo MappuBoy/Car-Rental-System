@@ -1,8 +1,6 @@
 package lk.ijse.carRental.controller;
 
 import lk.ijse.carRental.dto.DamadgeDTO;
-import lk.ijse.carRental.dto.GuestCustomerDTO;
-import lk.ijse.carRental.service.CustomerService;
 import lk.ijse.carRental.service.DamadgeService;
 import lk.ijse.carRental.util.ResponceUtil;
 import org.springframework.beans.factory.annotation.Autowired;

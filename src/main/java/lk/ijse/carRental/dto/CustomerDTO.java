@@ -9,12 +9,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @Data
 @ToString
-public class GuestCustomerDTO {
+public class CustomerDTO {
     private String nic;
-    private String driverLicenceNumber;
-    private String name;
     private String address;
-    private String tp;
+    private String driverLicenceNumber;
     private String email;
+    private String name;
+    private String tp;
 
 }
