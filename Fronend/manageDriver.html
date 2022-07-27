@@ -57,8 +57,8 @@
             <h4 class="text-secondary"> Register Vehicle Form</h4>
             <div class="mb-3">
                 <form class="d-flex-">
-                    <input class="form-control" id="txtdroverLicenceNumber" placeholder="driver Licence Number" type="text">
-                    <button class="btn btn-success" id="btnSearchDriver">Search Driver</button>
+                    <input class="form-control" id="txtdroverLicenceNumber" placeholder="driver Licence Number" type="text" name="droverLicenceNumber">
+                    <button class="btn btn-success" id="btnSearchDriver" type="button">Search Driver</button>
 
                 </form>
             </div>
@@ -75,26 +75,26 @@
             <div id="rightside">
 
                 <div class="mb-3">
-                    <input class="form-control" id="txtaddress" placeholder="Driver address" type="text">
+                    <input class="form-control" id="txtaddress" placeholder="Driver address" type="text" name="address">
                     <p><small class="text-danger pl-1" id="lbCusAddress"></small></p>
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="txtavailability" placeholder="Driver availability" type="text">
+                    <input class="form-control" id="txtavailability" placeholder="Driver availability" type="text" name="availability">
                     <p><small class="text-danger pl-1" id="lbdriveravailability"></small></p>
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="txtdrivertype"placeholder="Driver Type" type="text">
+                    <input class="form-control" id="txtdrivertype"placeholder="Driver Type" type="text" name="drivertype">
                     <p><small class="text-danger pl-1" id="lbldrivertype"></small></p>
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="txtfullname" placeholder="Full Name" type="text">
+                    <input class="form-control" id="txtfullname" placeholder="Full Name" type="text" name="fullname">
                     <p><small class="text-danger pl-1" id="lblfullname"></small></p>
                 </div>
                 <div class="mb-3">
-                    <input class="form-control" id="txttpNumer" placeholder="Tp Numer" type="text">
+                    <input class="form-control" id="txttpNumer" placeholder="Tp Numer" type="text" name="tpNumer">
                     <p><small class="text-danger pl-1" id="lbltpNumer"></small></p>
                 </div>
 
@@ -115,9 +115,10 @@
                 <tr class="table-success">
                     <th scope="col">driverLicenceNumber</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">tp</th>
+                    <th scope="col">available</th>
+                    <th scope="col">type</th>
+                    <th scope="col">full-name</th>
+                    <th scope="col">tpnumber</th>
                 </tr>
                 </thead>
                 <tbody id="driTable">
@@ -128,12 +129,143 @@
         </div>
     </section>
 </section>
-
-
     <script src="assets/jquery-3.6.0.min.js"></script>
     <script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
 <script>
+    var baseUrl="http://localhost:8080/Car_Rental_System_master_war/driver";
+    $("#btnSearchDriver").click(function (){
+        searchDriver();
 
+    });
+    //------------------------------------------------------------------------------------------------------------
+    function searchDriver(){
+        var driverId=$("#txtdroverLicenceNumber").val();
+        $.ajax({
+            url:baseUrl +"/"+ driverId,
+            method:"GET",
+            success: function (res){
+                if (res.code==200){
+                    var driver=res.data;
+                    $("#txtdroverLicenceNumber").val(driver.droverLicenceNumber);
+                    $("#txtaddress").val(driver.address);
+                    $("#txtavailability").val(driver.availability);
+                    $("#txtdrivertype").val(driver.drivertype);
+                    $("#txtfullname").val(driver.fullname);
+                    $("#txttpNumer").val(driver.tpNumer);
+                }else {
+                    clearForm();
+                    loadAllDriver();
+                }
+            },
+            error:function (ob){
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    function clearForm() {
+        $("#txtdroverLicenceNumber").val("");
+        $("#txtaddress").val("");
+        $("#txtavailability").val("");
+        $("#txtdrivertype").val("");
+        $("#txtfullname").val("");
+        $("#txttpNumer").val("");
+        $("#txtdroverLicenceNumber").focus();
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------
+    $("#btneDriver").click(function (){
+        loadAllDriver();
+    });
+    function loadAllDriver(){
+        $("#driTable").empty();
+        $.ajax({
+            url: baseUrl,
+            method: "GET",
+            success:function (resp){
+                for (const driver of resp.data) {
+                    let row = `<tr><td>${driver.droverLicenceNumber}</td>><td>${driver.address}</td>>
+<td>${driver.availability}</td><td>${driver.drivertype}</td><td>${driver.fullname}</td><td>${driver.tpNumer}</td></tr>`;
+                    $("#driTable").append(row);
+                }
+                bindClickEvent();
+                clearForm();
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    function bindClickEvent() {
+        $("#driTable>tr").click(function () {
+            //Get values from the selected row
+            let driverid = $(this).children().eq(0).text();
+            let driveraddress = $(this).children().eq(1).text();
+            let driveravailable = $(this).children().eq(2).text();
+            let dritypr = $(this).children().eq(3).text();
+            let driverfullname = $(this).children().eq(4).text();
+            let drivertp = $(this).children().eq(5).text();
+
+            //Set values to the text-fields
+            $("#txtdroverLicenceNumber").val(driverid);
+            $("#txtaddress").val(driveraddress);
+            $("#txtavailability").val(driveravailable);
+            $("#txtdrivertype").val(dritypr);
+            $("#txtfullname").val(driverfullname);
+            $("#txttpNumer").val(drivertp);
+            $("#txtdroverLicenceNumber").val(driverid);
+        });
+    }
+    //--------------------------------------------------------------------------------------------------------------------------
+    $("#btnDeleteDriver").click(function () {
+        deleteDelete();
+    });
+    function deleteDelete(){
+        let vehicleId = $("#txtdroverLicenceNumber").val();
+        $.ajax({
+            url:baseUrl +"?id="+vehicleId,
+            method:"DELETE",
+            success:function (res){
+                if (res.code==200){
+                    alert("Customer Successfully Deleted");
+                    loadAllDriver();
+                    clearForm();
+                }
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    $("#btnUpdateDriver").click(function () {
+        updateDriver();
+    });
+    function updateDriver() {
+        var driverob = {
+            droverLicenceNumber: $("#txtdroverLicenceNumber").val(),
+            address: $("#txtaddress").val(),
+            availability: $("#txtavailability").val(),
+            drivertype: $("#txtdrivertype").val(),
+            fullname: $("#txtfullname").val(),
+            tpNumer: $("#txttpNumer").val()
+        }
+        $.ajax({
+            url: baseUrl,
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(driverob),
+            success: function (res) {
+                if (res.code == 200) { // process is  ok
+                    alert("Successfully Updated");
+                    loadAllDriver();
+                    clearForm();
+                }
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
 </script>
 </body>
 </html>
