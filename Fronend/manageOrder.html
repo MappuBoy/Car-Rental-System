@@ -4,13 +4,270 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Customer Account</title>
     <link rel="stylesheet" href="bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <style>
+        #navbar{
+            height: 50px;
+        }
+        #homeBtn{
+            font-weight: bold;
+        }
+        img{
+            width: 300px;
+            height: 200px;
+        }
+        #leftside{
+            height: 300px;
+        }
+        #buttonset{
+            margin:10px;
+        }
+        .btn{
+            margin:10px;
+        }
+        #rightside{
+            height: 300px;
+        }
+        #custTable{
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" id="homeBtn">Easy Car Rental</a>
+                </li>
+
+            </ul>>
+        </div>
+    </div>
+</nav>
+
+<section class="container-fluid mt-3">
+    <section class="row mt-3 justify-content-around">
+        <div class="col-12 col-md-4" id="leftside">
+            <h4 class="text-secondary"> Register Customer Form</h4>
+            <div class="mb-3">
+                <form class="d-flex-">
+                    <input class="form-control" id="txtSearchCusID" placeholder="Customer NIC" type="text" name="nic">
+                    <button class="btn btn-success" id="btnSearchCustomer">Search Customer</button>
+
+                </form>
+            </div>
+            <div class="mb-3">
+                <div class="card" style="width: 30rem;">
+                    <img src="assets/images/vehiclerent.jpg" class="card-img-top" alt="Error loading image">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-5">
+
+            <div id="rightside">
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtCusAddress" placeholder="Customer Address" type="text" name="address">
+                    <p><small class="text-danger pl-1" id="lbCusAddress"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtdriverLicenceNumber" placeholder="Customer Licence Number" type="text" name="driverLicenceNumber">
+                    <p><small class="text-danger pl-1" id="lbdriverLicenceNumber"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtAemail"placeholder="Customer Email"type="text" name="email">
+                    <p><small class="text-danger pl-1" id="lblcusemail"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtName" placeholder="Customer Name" type="text" name="name">
+                    <p><small class="text-danger pl-1" id="lblcustxtAemail"></small></p>
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" id="txtTp" placeholder="Customer Tp" type="text" name="tp">
+                    <p><small class="text-danger pl-1" id="lblcustTp"></small></p>
+                </div>
+
+                <div class="modal-footer" id="buttonset">
+                    <button class="btn btn-success" id="btnLoadAll">Customer</button>
+                    <button class="btn btn-warning" id="btnUpdate">Update Customer</button>
+                    <button class="btn btn-danger" id="btnDeleteCustomer" type="submit">Delete Customer</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="row mt-4">
+        <div class="col" id="custTable">
+            <table class="table table-bordered table-hover mt-3">
+                <thead class="bg-danger text-white">
+                <tr class="table-success">
+                    <th scope="col" class="col-md-1">Id</th>
+                    <th scope="col" class="col-md-3">Address</th>
+                    <th scope="col"class="col-md-2">Licence number</th>
+                    <th scope="col" class="col-md-2">Email</th>
+                    <th scope="col" class="col-md-2">Name</th>
+                    <th scope="col" class="col-md-2">Tp</th>
+                </tr>
+                </thead>
+                <tbody id="cusTable">
+
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
 
     <script src="assets/jquery-3.6.0.min.js"></script>
  <script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+<script>
+    var baseUrl="http://localhost:8080/Car_Rental_System_master_war/customer";
+    $("#btnSearchCustomer").click(function (){
+        searchCustomer();
+
+    });
+    //------------------------------------------------------------------------------------------------------------
+    function searchCustomer(){
+        var customerId=$("#txtSearchCusID").val();
+        $.ajax({
+           url:baseUrl +"/"+ customerId,
+           method:"GET",
+           success: function (res){
+               if (res.code==200){
+                   var customer=res.data;
+                   $("#txtSearchCusID").val(customer.nic);
+                   $("#txtCusAddress").val(customer.address);
+                   $("#txtdriverLicenceNumber").val(customer.driverLicenceNumber);
+                   $("#txtAemail").val(customer.email);
+                   $("#txtName").val(customer.name);
+                   $("#txtTp").val(customer.tp);
+               }else {
+                   clearForm();
+                   loadAllCustomers();
+               }
+           },
+            error:function (ob){
+                alert(ob.responseJSON.message);
+           }
+        });
+    }
+    function clearForm() {
+        $("#txtSearchCusID").val("");
+        $("#txtCusAddress").val("");
+        $("#txtdriverLicenceNumber").val("");
+        $("#txtAemail").val("");
+        $("#txtName").val("");
+        $("#txtTp").val("");
+        $("#txtSearchCusID").focus();
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------
+    $("#btnLoadAll").click(function (){
+        loadAllCustomers();
+    });
+    function loadAllCustomers(){
+        $("#cusTable").empty();
+        $.ajax({
+            url: baseUrl,
+            method: "GET",
+            success:function (resp){
+                for (const customer of resp.data) {
+                    let row = `<tr><td>${customer.nic}</td>><td>${customer.address}</td>>
+<td>${customer.driverLicenceNumber}</td><td>${customer.email}</td><td>${customer.name}</td><td>${customer.tp}</td></tr>`;
+                    $("#cusTable").append(row);
+                }
+                bindClickEvent();
+                clearForm();
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    function bindClickEvent() {
+        $("#cusTable>tr").click(function () {
+            //Get values from the selected row
+            let cusnic = $(this).children().eq(0).text();
+            let cusaddress = $(this).children().eq(1).text();
+            let cusdriverLicenceNumber = $(this).children().eq(2).text();
+            let custemail = $(this).children().eq(3).text();
+            let custname = $(this).children().eq(4).text();
+            let custtp = $(this).children().eq(5).text();
+
+            //Set values to the text-fields
+            $("#txtSearchCusID").val(cusnic);
+            $("#txtCusAddress").val(cusaddress);
+            $("#txtdriverLicenceNumber").val(cusdriverLicenceNumber);
+            $("#txtAemail").val(custemail);
+            $("#txtName").val(custname);
+            $("#txtTp").val(custtp);
+        });
+    }
+    //--------------------------------------------------------------------------------------------------------------------------
+    $("#btnDeleteCustomer").click(function () {
+        deleteCustomer();
+    });
+    function deleteCustomer(){
+        let customerID = $("#txtSearchCusID").val();
+        $.ajax({
+           url:baseUrl +"?id="+customerID,
+           method:"DELETE",
+           success:function (res){
+               if (res.code==200){
+                   alert("Customer Successfully Deleted");
+                   loadAllCustomers();
+                   clearForm();
+               }
+           },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    $("#btnUpdate").click(function () {
+        updateCustomer();
+    });
+        function updateCustomer() {
+            var cusOb = {
+                nic: $("#txtSearchCusID").val(),
+                address: $("#txtCusAddress").val(),
+                driverLicenceNumber: $("#txtdriverLicenceNumber").val(),
+                email: $("#txtAemail").val(),
+                name: $("#txtName").val(),
+                tp: $("#txtTp").val()
+            }
+
+            $.ajax({
+                url: baseUrl,
+                method: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(cusOb),
+                success: function (res) {
+                    if (res.code == 200) { // process is  ok
+                        alert("Successfully Updated");
+                        loadAllCustomers();
+                        clearForm();
+                    }
+                },
+                error: function (ob) {
+                    alert(ob.responseJSON.message);
+                }
+            });
+        }
+</script>
 </body>
 </html>

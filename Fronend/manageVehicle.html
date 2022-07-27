@@ -4,49 +4,136 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vehicle Account</title>
     <link rel="stylesheet" href="bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <style>
+        #navbar{
+            height: 50px;
+        }
+        #homeBtn{
+            font-weight: bold;
+        }
+        img{
+            width: 300px;
+            height: 200px;
+        }
+        #leftside{
+            height: 300px;
+        }
+        #buttonset{
+            margin:10px;
+        }
+        .btn{
+            margin:10px;
+        }
+        #rightside{
+            height: 300px;
+        }
+        #custTable{
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-<h4>Customer </h4>
-<form class="row g-3">
-    <div class="col-md-4">
-        <label for="ordercustID" class="form-label">Input NIC</label>
-        <input type="text" class="form-control" id="ordercustID">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html" id="homeBtn">Easy Car Rental</a>
+                </li>
+
+            </ul>>
+        </div>
     </div>
-    <div class="col-md-4">
-        <label for="orderVehicleID"class="form-label">Vehicle Numberplate</label>
-        <input type="text" class="form-control" id="orderVehicleID" >
-    </div>
-    <div class="col-md-4">
-        <label for="orderDriverName" class="form-label">Driver license number</label>
-        <input type="text" class="form-control" id="orderDriverName">
-    </div>
-    <div class="col-md-4">
-        <label for="ordercustName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="ordercustName">
-    </div>
-    <div class="col-md-4">
-        <label for="orderVehicleBrand" class="form-label">Vehicle Brand</label>
-        <input type="text" class="form-control" id="orderVehicleBrand">
-    </div>
-    <div class="col-md-4">
-        <label for="orderDriversname" class="form-label">Driver Name</label>
-        <input type="text" class="form-control" id="orderDriversname">
-    </div>
-    <div class="col-md-4">
-        <label for="orderCustTp" class="form-label">Contact Number</label>
-        <input type="text" class="form-control" id="orderCustTp">
-    </div>
-    <div class="col-md-4">
-        <label for="orderVehicleType" class="form-label">Vehicle Type</label>
-        <input type="text" class="form-control" id="orderVehicleType">
-    </div>
-    <div class="col-md-4">
-        <label for="orderDriversdrivertype" class="form-label">Driver type</label>
-        <input type="text" class="form-control" id="orderDriversdrivertype">
-    </div>
-</form>
+</nav>
+
+<section class="container-fluid mt-3">
+    <section class="row mt-3 justify-content-around">
+        <div class="col-12 col-md-4" id="leftside">
+            <h4 class="text-secondary"> Register Vehicle Form</h4>
+            <div class="mb-3">
+                <form class="d-flex-">
+                    <input class="form-control" id="txtSearchVehID" placeholder="Number Plate Number" type="text">
+                    <button class="btn btn-success" id="btnSearchVehicle">Search Vehicle</button>
+
+                </form>
+            </div>
+            <div class="mb-3">
+                <div class="card" style="width: 30rem;">
+                    <img src="assets/images/vehicle%20logo.jpg" class="card-img-top" alt="Error loading image">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-5">
+
+            <div id="rightside">
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtavailability" placeholder="Vehicle availability" type="text">
+                    <p><small class="text-danger pl-1" id="lbCusAddress"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtcolour" placeholder="Vehicle colour" type="text">
+                    <p><small class="text-danger pl-1" id="lbdriverLicenceNumber"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtfuelType"placeholder="Vehicle fuelType"type="text">
+                    <p><small class="text-danger pl-1" id="lblcusemail"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtnumberofPassengers" placeholder="Vehicle number of Passengers" type="text">
+                    <p><small class="text-danger pl-1" id="lblnumberofPassengers"></small></p>
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" id="txttransmissionType" placeholder="Vehicle transmission Type" type="text">
+                    <p><small class="text-danger pl-1" id="lbltransmissionType"></small></p>
+                </div>
+                <div class="mb-3">
+                    <input class="form-control" id="txttype" placeholder="Vehicle Type" type="text">
+                    <p><small class="text-danger pl-1" id="lbltype"></small></p>
+                </div>
+
+                <div class="modal-footer" id="buttonset">
+                    <button class="btn btn-warning" id="btnUpdateVehicle">Update Vehicle</button>
+                    <button class="btn btn-danger" id="btnDeleteVehicle" type="submit">Delete Vehicle</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="row mt-4">
+        <div class="col" id="custTable">
+            <table class="table table-bordered table-hover mt-3">
+                <thead class="bg-danger text-white">
+                <tr class="table-success">
+                    <th scope="col">Id</th>
+                    <th scope="col">availability</th>
+                    <th scope="col">color</th>
+                    <th scope="col">fueltype</th>
+                    <th scope="col">passengers</th>
+                    <th scope="col">transmition</th>
+                    <th scope="col">type</th>
+                </tr>
+                </thead>
+                <tbody id="cusTable">
+
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
     <script src="assets/jquery-3.6.0.min.js"></script>
  <script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
 </body>
