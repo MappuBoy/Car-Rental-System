@@ -29,8 +29,8 @@
         #rightside{
             height: 300px;
         }
-        #custTable{
-            margin: 20px;
+        #vehiTable{
+            margin: 100px;
         }
     </style>
 </head>
@@ -58,8 +58,8 @@
             <h4 class="text-secondary"> Register Vehicle Form</h4>
             <div class="mb-3">
                 <form class="d-flex-">
-                    <input class="form-control" id="txtSearchVehID" placeholder="Number Plate Number" type="text">
-                    <button class="btn btn-success" id="btnSearchVehicle">Search Vehicle</button>
+                    <input class="form-control" id="txtSearchVehID" placeholder="Number Plate Number" type="text" name="numberPlateNumber">
+                    <button type="button" class="btn btn-success" id="btnSearchVehicle">Search Vehicle</button>
 
                 </form>
             </div>
@@ -76,36 +76,41 @@
             <div id="rightside">
 
                 <div class="mb-3">
-                    <input class="form-control" id="txtavailability" placeholder="Vehicle availability" type="text">
+                    <input class="form-control" id="txtavailability" placeholder="Vehicle availability" type="text" name="availability">
                     <p><small class="text-danger pl-1" id="lbCusAddress"></small></p>
                 </div>
-
                 <div class="mb-3">
-                    <input class="form-control" id="txtcolour" placeholder="Vehicle colour" type="text">
-                    <p><small class="text-danger pl-1" id="lbdriverLicenceNumber"></small></p>
+                    <input class="form-control" id="txtbrand" placeholder="Vehicle brand" type="text" name="brand">
+                    <p><small class="text-danger pl-1" id="lbbrand"></small></p>
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="txtfuelType"placeholder="Vehicle fuelType"type="text">
-                    <p><small class="text-danger pl-1" id="lblcusemail"></small></p>
+                    <input class="form-control" id="txtcolour" placeholder="Vehicle colour" type="text" name="colour">
+                    <p><small class="text-danger pl-1" id="lbcolour"></small></p>
                 </div>
 
                 <div class="mb-3">
-                    <input class="form-control" id="txtnumberofPassengers" placeholder="Vehicle number of Passengers" type="text">
+                    <input class="form-control" id="txtfuelType"placeholder="Vehicle fuelType"type="text" name="fuelType">
+                    <p><small class="text-danger pl-1" id="lblfuelType"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtnumberofPassengers" placeholder="Vehicle number of Passengers" type="text" name="numberofPassengers">
                     <p><small class="text-danger pl-1" id="lblnumberofPassengers"></small></p>
                 </div>
                 <div class="mb-3">
-                    <input class="form-control" id="txttransmissionType" placeholder="Vehicle transmission Type" type="text">
+                    <input class="form-control" id="txttransmissionType" placeholder="Vehicle transmission Type" type="text" name="transmissionType">
                     <p><small class="text-danger pl-1" id="lbltransmissionType"></small></p>
                 </div>
                 <div class="mb-3">
-                    <input class="form-control" id="txttype" placeholder="Vehicle Type" type="text">
+                    <input class="form-control" id="txttype" placeholder="Vehicle Type" type="text" name="type">
                     <p><small class="text-danger pl-1" id="lbltype"></small></p>
                 </div>
 
                 <div class="modal-footer" id="buttonset">
-                    <button class="btn btn-warning" id="btnUpdateVehicle">Update Vehicle</button>
-                    <button class="btn btn-danger" id="btnDeleteVehicle" type="submit">Delete Vehicle</button>
+                    <button type="button" class="btn btn-success" id="btnVehicle"> Vehicle</button>
+                    <button type="button" class="btn btn-warning" id="btnUpdateVehicle">Update Vehicle</button>
+                    <button class="btn btn-danger" id="btnDeleteVehicle" type="button">Delete Vehicle</button>
                 </div>
             </div>
         </div>
@@ -113,28 +118,175 @@
     </section>
 
     <section class="row mt-4">
-        <div class="col" id="custTable">
+        <div class="col" id="vehiTable">
             <table class="table table-bordered table-hover mt-3">
                 <thead class="bg-danger text-white">
                 <tr class="table-success">
                     <th scope="col">Id</th>
                     <th scope="col">availability</th>
-                    <th scope="col">color</th>
+                    <th scope="col">brand</th>
+                    <th scope="col">colour</th>
                     <th scope="col">fueltype</th>
                     <th scope="col">passengers</th>
                     <th scope="col">transmition</th>
                     <th scope="col">type</th>
                 </tr>
                 </thead>
-                <tbody id="cusTable">
-
+                <tbody id="vehicleTable">
 
                 </tbody>
             </table>
         </div>
     </section>
 </section>
-    <script src="assets/jquery-3.6.0.min.js"></script>
+<script src="assets/jquery-3.6.0.min.js"></script>
  <script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+<script>
+    var baseUrl="http://localhost:8080/Car_Rental_System_master_war/vehicle";
+    $("#btnSearchVehicle").click(function (){
+        searchVehicle();
+
+    });
+    //------------------------------------------------------------------------------------------------------------
+    function searchVehicle(){
+        var vehicleId=$("#txtSearchVehID").val();
+        $.ajax({
+            url:baseUrl +"/"+ vehicleId,
+            method:"GET",
+            success: function (res){
+                if (res.code==200){
+                    var vehicle=res.data;
+                    $("#txtSearchVehID").val(vehicle.numberPlateNumber);
+                    $("#txtavailability").val(vehicle.availability);
+                    $("#txtbrand").val(vehicle.brand);
+                    $("#txtcolour").val(vehicle.colour);
+                    $("#txtfuelType").val(vehicle.fuelType);
+                    $("#txtnumberofPassengers").val(vehicle.numberofPassengers);
+                    $("#txttransmissionType").val(vehicle.transmissionType);
+                    $("#txttype").val(vehicle.type);
+                }else {
+                    clearForm();
+                    loadAllCustomers();
+                }
+            },
+            error:function (ob){
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    function clearForm() {
+        $("#txtSearchVehID").val("");
+        $("#txtavailability").val("");
+        $("#txtbrand").val("");
+        $("#txtcolour").val("");
+        $("#txtfuelType").val("");
+        $("#txtnumberofPassengers").val("");
+        $("#txttransmissionType").val("");
+        $("#txttype").val("");
+        $("#txtSearchVehID").focus();
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------
+    $("#btnVehicle").click(function (){
+        loadAllVehicle();
+    });
+    function loadAllVehicle(){
+        $("#vehicleTable").empty();
+        $.ajax({
+            url: baseUrl,
+            method: "GET",
+            success:function (resp){
+                for (const vehicle of resp.data) {
+                    let row = `<tr><td>${vehicle.numberPlateNumber}</td>><td>${vehicle.availability}</td>>
+<td>${vehicle.brand}</td><td>${vehicle.colour}</td><td>${vehicle.fuelType}</td><td>${vehicle.numberofPassengers}</td><td>${vehicle.transmissionType}</td><td>${vehicle.type}</td></tr>`;
+                    $("#vehicleTable").append(row);
+                }
+                bindClickEvent();
+                clearForm();
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    function bindClickEvent() {
+        $("#vehicleTable>tr").click(function () {
+            //Get values from the selected row
+            let vhicleId = $(this).children().eq(0).text();
+            let vehiavailability = $(this).children().eq(1).text();
+            let vehibrand = $(this).children().eq(2).text();
+            let vehicolour = $(this).children().eq(3).text();
+            let vehifuelType = $(this).children().eq(4).text();
+            let vehinumberofpassenger = $(this).children().eq(5).text();
+            let vehitransmitiontype = $(this).children().eq(6).text();
+            let vehitype = $(this).children().eq(7).text();
+
+            //Set values to the text-fields
+            $("#txtSearchVehID").val(vhicleId);
+            $("#txtavailability").val(vehiavailability);
+            $("#txtbrand").val(vehibrand);
+            $("#txtcolour").val(vehicolour);
+            $("#txtfuelType").val(vehifuelType);
+            $("#txtnumberofPassengers").val(vehinumberofpassenger);
+            $("#txttransmissionType").val(vehitransmitiontype);
+            $("#txttype").val(vehitype);
+            $("#txtSearchVehID").val(vhicleId);
+        });
+    }
+    //--------------------------------------------------------------------------------------------------------------------------
+    $("#btnDeleteVehicle").click(function () {
+        deleteVehicle();
+    });
+    function deleteVehicle(){
+        let vehicleId = $("#txtSearchVehID").val();
+        $.ajax({
+            url:baseUrl +"?id="+vehicleId,
+            method:"DELETE",
+            success:function (res){
+                if (res.code==200){
+                    alert("Customer Successfully Deleted");
+                    loadAllVehicle();
+                    clearForm();
+                }
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    $("#btnUpdateVehicle").click(function () {
+        updateVehicle();
+    });
+    function updateVehicle() {
+        var vehicleOb = {
+            numberPlateNumber: $("#txtSearchVehID").val(),
+            availability: $("#txtavailability").val(),
+            brand: $("#txtbrand").val(),
+            colour: $("#txtcolour").val(),
+            fuelType: $("#txtfuelType").val(),
+            numberofPassengers: $("#txtnumberofPassengers").val(),
+            transmissionType: $("#txttransmissionType").val(),
+            type: $("#txttype").val()
+        }
+
+        $.ajax({
+            url: baseUrl,
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(vehicleOb),
+            success: function (res) {
+                if (res.code == 200) { // process is  ok
+                    alert("Successfully Updated");
+                    loadAllVehicle();
+                    clearForm();
+                }
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+</script>
 </body>
 </html>
