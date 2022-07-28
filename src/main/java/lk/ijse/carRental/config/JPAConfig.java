@@ -1,4 +1,4 @@
-package lk.ijse.spring.config;
+package lk.ijse.carRental.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import(lk.ijse.spring.config.JPAConfig.class)
+@Import(lk.ijse.carRental.config.JPAConfig.class)
 public class WebRootConfig {
 
 }

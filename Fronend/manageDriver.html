@@ -211,14 +211,13 @@
             $("#txtdrivertype").val(dritypr);
             $("#txtfullname").val(driverfullname);
             $("#txttpNumer").val(drivertp);
-            $("#txtdroverLicenceNumber").val(driverid);
         });
     }
     //--------------------------------------------------------------------------------------------------------------------------
     $("#btnDeleteDriver").click(function () {
-        deleteDelete();
+        deleteDriver();
     });
-    function deleteDelete(){
+    function deleteDriver(){
         let vehicleId = $("#txtdroverLicenceNumber").val();
         $.ajax({
             url:baseUrl +"?id="+vehicleId,
