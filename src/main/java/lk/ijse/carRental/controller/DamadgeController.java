@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/damadge")
+@RequestMapping("damadge")
 @CrossOrigin
 public class DamadgeController {
     @Autowired

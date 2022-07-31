@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Damadge Wiver Page</title>
+        <link rel="stylesheet" href="bootstrap-5.2.0-dist/css/bootstrap.min.css">
+        <style>
+            #navbar{
+                height: 50px;
+            }
+            #homeBtn{
+                font-weight: bold;
+            }
+            img{
+                width: 300px;
+                height: 200px;
+            }
+            #leftside{
+                height: 300px;
+            }
+            #buttonset{
+                margin:10px;
+            }
+            .btn{
+                margin:10px;
+            }
+            #rightside{
+                height: 300px;
+            }
+            #driverTable{
+                margin: 20px;
+                padding: 70px 0 0 0;
+            }
+            #buttonset{
+                width: 700px;
+                padding: 0 80px 0 0;
+            }
+        </style>
+    </head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="admin.html" id="homeBtn">Admin Panel</a>
+                </li>
+
+            </ul>>
+        </div>
+    </div>
+</nav>
+
+<section class="container-fluid mt-3">
+    <section class="row mt-3 justify-content-around">
+
+        <div class="col-12 col-md-4" id="leftside">
+            <h4 class="text-secondary"> Register Damadge Weiver Form</h4>
+            <div class="mb-3">
+                <div class="card" style="width: 30rem;">
+                    <img src="assets/images/insurence.jfif" class="card-img-top" alt="Error loading image">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-5">
+
+            <div id="rightside">
+                <form class="d-flex-" id="customerForm">
+                <div class="mb-3">
+                    <input class="form-control" id="txtdroverLicenceNumber" placeholder="Damadge Id" type="text" name="damadgeId">
+                    <button class="btn btn-success" id="btnSearchDriver" type="button">Search Damadge</button>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtaddress" placeholder="Vehicle Type" type="text" name="vehicleType">
+                    <p><small class="text-danger pl-1" id="lbCusAddress"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtavailability" placeholder="Damadge Type" type="text" name="damadgeType">
+                    <p><small class="text-danger pl-1" id="lbdriveravailability"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtdrivertype"placeholder="Payment Mathod" type="text" name="paymentMathod">
+                    <p><small class="text-danger pl-1" id="lbldrivertype"></small></p>
+                </div>
+
+                <div class="mb-3">
+                    <input class="form-control" id="txtfullname" placeholder="Cost" type="text" name="cost">
+                    <p><small class="text-danger pl-1" id="lblfullname"></small></p>
+                </div>
+
+
+                <div class="modal-footer" id="buttonset">
+                    <button class="btn btn-primary btn-sm" id="btnAddDriver" type="button">Add Damadge</button>
+                    <button class="btn btn-success btn-sm" id="btneDriver" type="button">All Damadge</button>
+                    <button class="btn btn-warning btn-sm" id="btnUpdateDriver" type="button">Update Damadge</button>
+                    <button class="btn btn-danger btn-sm" id="btnDeleteDriver" type="button">Delete Damadge</button>
+                </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="row mt-4">
+        <div class="col" id="driverTable">
+            <table class="table table-bordered table-hover mt-3">
+                <thead class="bg-danger text-white">
+                <tr class="table-success">
+                    <th scope="col">damadgeId</th>
+                    <th scope="col">vehicleType</th>
+                    <th scope="col">damadgeType</th>
+                    <th scope="col">paymentMathod</th>
+                    <th scope="col">cost</th>
+                </tr>
+                </thead>
+                <tbody id="driTable">
+
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
+<script src="assets/jquery-3.6.0.min.js"></script>
+<script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
+<script>
+    var baseUrl="http://localhost:8080/Car_Rental_System_master_war/damadge";
+    $("#btnAddDriver").click(function(){
+        saveCustomer();
+    });
+
+    function saveCustomer(){
+        var data=$("#customerForm").serialize();
+        $.ajax({
+            url:baseUrl,
+            method:"POST",
+            data: data,
+            success: function (res){
+                if (res.code==200){
+                    alert("Successfully Customer Registered");
+                }
+            },
+            error: function (ob){
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    $("#btnSearchDriver").click(function (){
+        searchDriver();
+
+    });
+    //------------------------------------------------------------------------------------------------------------
+    function searchDriver(){
+        var driverId=$("#txtdroverLicenceNumber").val();
+        $.ajax({
+            url:baseUrl +"/"+ driverId,
+            method:"GET",
+            success: function (res){
+                if (res.code==200){
+                    var driver=res.data;
+                    $("#txtdroverLicenceNumber").val(driver.damadgeId);
+                    $("#txtaddress").val(driver.vehicleType);
+                    $("#txtavailability").val(driver.damadgeType);
+                    $("#txtdrivertype").val(driver.paymentMathod);
+                    $("#txtfullname").val(driver.cost);
+                }else {
+                    clearForm();
+                    loadAllDriver();
+                }
+            },
+            error:function (ob){
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    function clearForm() {
+        $("#txtdroverLicenceNumber").val("");
+        $("#txtaddress").val("");
+        $("#txtavailability").val("");
+        $("#txtdrivertype").val("");
+        $("#txtfullname").val("");
+        $("#txtdroverLicenceNumber").focus();
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------
+    $("#btneDriver").click(function (){
+        loadAllDriver();
+    });
+    function loadAllDriver(){
+        $("#driTable").empty();
+        $.ajax({
+            url: baseUrl,
+            method: "GET",
+            success:function (resp){
+                for (const driver of resp.data) {
+                    let row = `<tr><td>${driver.damadgeId}</td>><td>${driver.vehicleType}</td>>
+<td>${driver.damadgeType}</td><td>${driver.paymentMathod}</td>><td>${driver.cost}</td></tr>`;
+                    $("#driTable").append(row);
+                }
+                bindClickEvent();
+                clearForm();
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+    function bindClickEvent() {
+        $("#driTable>tr").click(function () {
+            //Get values from the selected row
+            let driverid = $(this).children().eq(0).text();
+            let driveraddress = $(this).children().eq(1).text();
+            let driveravailable = $(this).children().eq(2).text();
+            let dritypr = $(this).children().eq(3).text();
+            let driverfullname = $(this).children().eq(4).text();
+
+            //Set values to the text-fields
+            $("#txtdroverLicenceNumber").val(driverid);
+            $("#txtaddress").val(driveraddress);
+            $("#txtavailability").val(driveravailable);
+            $("#txtdrivertype").val(dritypr);
+            $("#txtfullname").val(driverfullname);
+        });
+    }
+    //--------------------------------------------------------------------------------------------------------------------------
+    $("#btnDeleteDriver").click(function () {
+        deleteDriver();
+    });
+    function deleteDriver(){
+        let vehicleId = $("#txtdroverLicenceNumber").val();
+        $.ajax({
+            url:baseUrl +"?id="+vehicleId,
+            method:"DELETE",
+            success:function (res){
+                if (res.code==200){
+                    alert("Customer Successfully Deleted");
+                    loadAllDriver();
+                    clearForm();
+                }
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    $("#btnUpdateDriver").click(function () {
+        updateDriver();
+    });
+    function updateDriver() {
+        var driverob = {
+            damadgeId: $("#txtdroverLicenceNumber").val(),
+            vehicleType: $("#txtaddress").val(),
+            damadgeType: $("#txtavailability").val(),
+            paymentMathod: $("#txtdrivertype").val(),
+            cost: $("#txtfullname").val()
+        }
+        $.ajax({
+            url: baseUrl,
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(driverob),
+            success: function (res) {
+                if (res.code == 200) { // process is  ok
+                    alert("Successfully Updated");
+                    loadAllDriver();
+                    clearForm();
+                }
+            },
+            error: function (ob) {
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
+</script>
+</body>
+
+</html>

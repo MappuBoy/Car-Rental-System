@@ -9,10 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("payment")
 @CrossOrigin
 public class PaymentController {
-  /*  @Autowired
+    @Autowired
     PaymentService paymentService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,5 +42,5 @@ public class PaymentController {
     @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponceUtil serachpayment(@PathVariable String id) {
         return new ResponceUtil(200,"Ok",paymentService.serachpayment(id));
-    }*/
+    }
 }
