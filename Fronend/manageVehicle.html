@@ -20,9 +20,6 @@
         #leftside{
             height: 300px;
         }
-        #buttonset{
-            margin:10px;
-        }
         .btn{
             margin:10px;
         }
@@ -30,7 +27,13 @@
             height: 300px;
         }
         #vehiTable{
-            margin: 100px;
+            margin: 20px;
+            padding: 120px 0 0 0;
+        }
+        #buttonset{
+            margin:10px;
+            width: 800px;
+            padding: 0 100px 0 0;
         }
     </style>
 </head>
@@ -56,17 +59,10 @@
     <section class="row mt-3 justify-content-around">
         <div class="col-12 col-md-4" id="leftside">
             <h4 class="text-secondary"> Register Vehicle Form</h4>
-            <div class="mb-3">
-                <form class="d-flex-">
-                    <input class="form-control" id="txtSearchVehID" placeholder="Number Plate Number" type="text" name="numberPlateNumber">
-                    <button type="button" class="btn btn-success" id="btnSearchVehicle">Search Vehicle</button>
 
-                </form>
-            </div>
             <div class="mb-3">
                 <div class="card" style="width: 30rem;">
                     <img src="assets/images/vehicle%20logo.jpg" class="card-img-top" alt="Error loading image">
-
                 </div>
             </div>
         </div>
@@ -74,6 +70,18 @@
         <div class="col-12 col-md-5">
 
             <div id="rightside">
+                <form class="d-flex-" id="vehicleForm">
+                    <div class="mb-3">
+                        <input class="form-control" id="txtSearchVehID" placeholder="Number Plate Number" type="text" name="numberPlateNumber">
+
+                        <div class="m-0" id="buttonset">
+                            <button type="button" class="btn btn-success" id="btnSearchVehicle">Search</button>
+                            <button type="button" class="btn btn-primary" id="btnsaveVehicle">Add</button>
+                            <button type="button" class="btn btn-success" id="btnVehicle"> Vehicle</button>
+                            <button type="button" class="btn btn-warning" id="btnUpdateVehicle">Update</button>
+                            <button class="btn btn-danger" id="btnDeleteVehicle" type="button">Delete</button>
+                        </div>
+                    </div>
 
                 <div class="mb-3">
                     <input class="form-control" id="txtavailability" placeholder="Vehicle availability" type="text" name="availability">
@@ -107,11 +115,8 @@
                     <p><small class="text-danger pl-1" id="lbltype"></small></p>
                 </div>
 
-                <div class="modal-footer" id="buttonset">
-                    <button type="button" class="btn btn-success" id="btnVehicle"> Vehicle</button>
-                    <button type="button" class="btn btn-warning" id="btnUpdateVehicle">Update Vehicle</button>
-                    <button class="btn btn-danger" id="btnDeleteVehicle" type="button">Delete Vehicle</button>
-                </div>
+
+                </form>
             </div>
         </div>
 
@@ -143,6 +148,28 @@
  <script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
 <script>
     var baseUrl="http://localhost:8080/Car_Rental_System_master_war/vehicle";
+    $("#btnsaveVehicle").click(function(){
+        saveVehicle();
+    });
+
+    function saveVehicle(){
+        var data=$("#vehicleForm").serialize();
+        $.ajax({
+            url: baseUrl,
+            method: "POST",
+            data:data,
+            success:function (res){
+                if (res.code==200){
+                    alert("Successfully Vehicle Registered");
+                    clearForm();
+                    loadAllCustomers();
+                }
+            },
+            error: function (ob){
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
     $("#btnSearchVehicle").click(function (){
         searchVehicle();
 

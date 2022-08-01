@@ -35,7 +35,7 @@
             }
             #buttonset{
                 width: 700px;
-                padding: 0 80px 0 0;
+                padding: 0 70px 0 0;
             }
         </style>
     </head>
@@ -148,6 +148,8 @@
             success: function (res){
                 if (res.code==200){
                     alert("Successfully Customer Registered");
+                    bindClickEvent();
+                    clearForm();
                 }
             },
             error: function (ob){

@@ -33,6 +33,11 @@
             }
             #driverTable{
                 margin: 20px;
+                padding: 70px 0 0 0;
+            }
+            #buttonset{
+                width: 700px;
+                padding: 0 80px 0 0;
             }
         </style>
     </head>
@@ -57,13 +62,7 @@
     <section class="row mt-3 justify-content-around">
         <div class="col-12 col-md-4" id="leftside">
             <h4 class="text-secondary"> Register Payment Form</h4>
-            <div class="mb-3">
-                <form class="d-flex-" id="paymentForm">
-                    <input class="form-control" id="txtdroverLicenceNumber" placeholder="Payment ID" type="text" name="paymentId">
-                    <button class="btn btn-success" id="btnSearchDriver" type="button">Search Payment</button>
 
-                </form>
-            </div>
             <div class="mb-3">
                 <div class="card" style="width: 30rem;">
                     <img src="assets/images/payment.jfif" class="card-img-top" alt="Error loading image">
@@ -75,6 +74,11 @@
         <div class="col-12 col-md-5">
 
             <div id="rightside">
+                <form class="d-flex-" id="paymentForm">
+                    <div class="mb-3">
+                        <input class="form-control" id="txtdroverLicenceNumber" placeholder="Payment ID" type="text" name="paymentId">
+                        <button class="btn btn-success" id="btnSearchDriver" type="button">Search Payment</button>
+                    </div>
 
                 <div class="mb-3">
                     <input class="form-control" id="txtaddress" placeholder="Vehicle Type" type="text" name="vehicleType">
@@ -102,6 +106,7 @@
                     <button class="btn btn-warning" id="btnUpdateDriver" type="button">Update Payment</button>
                     <button class="btn btn-danger" id="btnDeleteDriver" type="button">Delete Payment</button>
                 </div>
+                </form>
             </div>
         </div>
 
@@ -143,6 +148,8 @@
             success: function (res){
                 if (res.code==200){
                     alert("Successfully Customer Registered");
+                    clearForm();
+                    loadAllDriver();
                 }else{
 
                 }

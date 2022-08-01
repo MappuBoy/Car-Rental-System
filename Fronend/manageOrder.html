@@ -29,8 +29,14 @@
         #rightside{
             height: 300px;
         }
+
         #custTable{
             margin: 20px;
+            padding: 80px 0 0 0;
+        }
+        #buttonset{
+            width: 700px;
+            padding: 0 80px 0 0;
         }
     </style>
 </head>
@@ -56,13 +62,7 @@
     <section class="row mt-3 justify-content-around">
         <div class="col-12 col-md-4" id="leftside">
             <h4 class="text-secondary"> Register Customer Form</h4>
-            <div class="mb-3">
-                <form class="d-flex-">
-                    <input class="form-control" id="txtSearchCusID" placeholder="Customer NIC" type="text" name="nic">
-                    <button type="button" class="btn btn-success" id="btnSearchCustomer">Search Customer</button>
 
-                </form>
-            </div>
             <div class="mb-3">
                 <div class="card" style="width: 30rem;">
                     <img src="assets/images/vehiclerent.jpg" class="card-img-top" alt="Error loading image">
@@ -74,6 +74,18 @@
         <div class="col-12 col-md-5">
 
             <div id="rightside">
+                <form class="d-flex-" id="customerForm">
+                    <div class="mb-3">
+                        <input class="form-control" id="txtSearchCusID" placeholder="Customer NIC" type="text" name="nic">
+
+                        <div class="m-0" id="buttonset">
+                            <button type="button" class="btn btn-success" id="btnSearchCustomer">Search</button>
+                            <button type="button" class="btn btn-primary" id="btnSaveCustomer">Add</button>
+                            <button type="button" class="btn btn-success" id="btnLoadAll">Customer</button>
+                            <button type="button" class="btn btn-warning" id="btnUpdate">Update</button>
+                            <button class="btn btn-danger" id="btnDeleteCustomer" type="button">Delete</button>
+                        </div>
+                    </div>
 
                 <div class="mb-3">
                     <input class="form-control" id="txtCusAddress" placeholder="Customer Address" type="text" name="address">
@@ -99,11 +111,8 @@
                     <p><small class="text-danger pl-1" id="lblcustTp"></small></p>
                 </div>
 
-                <div class="modal-footer" id="buttonset">
-                    <button type="button" class="btn btn-success" id="btnLoadAll">Customer</button>
-                    <button type="button" class="btn btn-warning" id="btnUpdate">Update Customer</button>
-                    <button class="btn btn-danger" id="btnDeleteCustomer" type="button">Delete Customer</button>
-                </div>
+
+                </form>
             </div>
         </div>
 
@@ -135,6 +144,29 @@
  <script src="bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
 <script>
     var baseUrl="http://localhost:8080/Car_Rental_System_master_war/customer";
+    $("#btnSaveCustomer").click(function(){
+        saveCustomer();
+    });
+
+    function saveCustomer(){
+        var data=$("#customerForm").serialize();
+        $.ajax({
+            url:baseUrl,
+            method:"POST",
+            data: data,
+            success: function (res){
+                if (res.code==200){
+                    alert("Successfully Customer Registered");
+                    clearForm();
+                    loadAllCustomers();
+
+                }
+            },
+            error: function (ob){
+                alert(ob.responseJSON.message);
+            }
+        });
+    }
     $("#btnSearchCustomer").click(function (){
         searchCustomer();
 
